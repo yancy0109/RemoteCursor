@@ -11,7 +11,7 @@ import java.io.IOException;
 public abstract class DefaultClient implements Client {
 
     @Override
-    public void receive() throws IOException {
+    public void receive(byte[] postions) throws IOException {
 
     }
 

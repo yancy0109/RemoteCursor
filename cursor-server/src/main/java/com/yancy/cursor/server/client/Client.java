@@ -11,6 +11,6 @@ public interface Client {
     /**
      * 向目标 Client 对象
      */
-    void receive() throws IOException;
+    void receive(byte[] positions) throws IOException;
     
 }

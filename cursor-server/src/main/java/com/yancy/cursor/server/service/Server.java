@@ -1,7 +1,7 @@
-package com.yancy.cursor.server.server;
+package com.yancy.cursor.server.service;
 
 import java.io.IOException;
-import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  * 服务器类接口
@@ -12,12 +12,13 @@ public interface Server {
     /**
      * 开启端口监听，允许建立远程连接
      */
-    ServerSocket listen(String addr, int port) throws IOException;
+    void listen(String addr, int port) throws IOException;
+
 
 
     /**
-     *
+     * 接收链接，获取 Socket 对象
      */
-    void connection();
+    Socket connection();
 
 }
