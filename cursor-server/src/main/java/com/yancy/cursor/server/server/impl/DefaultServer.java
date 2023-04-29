@@ -20,5 +20,8 @@ public abstract class DefaultServer implements Server {
         return serverSocket;
     }
 
+    @Override
+    public void connection() {
 
+    }
 }

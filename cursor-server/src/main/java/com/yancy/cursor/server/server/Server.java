@@ -15,4 +15,9 @@ public interface Server {
     ServerSocket listen(String addr, int port) throws IOException;
 
 
+    /**
+     *
+     */
+    void connection();
+
 }
