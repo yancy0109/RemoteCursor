@@ -14,10 +14,14 @@ import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
 import com.github.kwhat.jnativehook.mouse.NativeMouseWheelEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseWheelListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
 public class App implements NativeMouseInputListener, NativeMouseWheelListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(NativeMouseInputListener.class);
 
     private BroadcastServiceImpl broadcastService;
 
@@ -36,7 +40,10 @@ public class App implements NativeMouseInputListener, NativeMouseWheelListener {
     }
 
     public void nativeMouseMoved(NativeMouseEvent e) {
-//        this.broadcastService.sendMouseMoved((int) MouseInfo.getPointerInfo().getLocation().getX(), (int) MouseInfo.getPointerInfo().getLocation().getY());
+        int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
+        int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
+        logger.info("Mouse Moved , {},{}", x, y);
+        this.broadcastService.sendMouseMoved(x, y);
     }
 
     public void nativeMouseDragged(NativeMouseEvent e) {
@@ -44,7 +51,10 @@ public class App implements NativeMouseInputListener, NativeMouseWheelListener {
 
     @Override
     public void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {
-        this.broadcastService.sendMousewheelMoved(nativeEvent.getWheelDirection(), nativeEvent.getWheelRotation());
+        int wheelDirection = nativeEvent.getWheelDirection();
+        int wheelRotation = nativeEvent.getWheelRotation();
+        logger.info("Mouse WheelMoved , {},{}", wheelDirection, wheelRotation);
+        this.broadcastService.sendMousewheelMoved(wheelDirection, wheelRotation);
     }
 
     public static void main(String[] args) {
@@ -58,7 +68,7 @@ public class App implements NativeMouseInputListener, NativeMouseWheelListener {
         }
 
         // Construct the example object.
-        App app = new App("127.0.0.1", 11451);
+        App app = new App("192.168.3.54", 11451);
         // Add the appropriate listeners.
         GlobalScreen.addNativeMouseListener(app);
         GlobalScreen.addNativeMouseMotionListener(app);

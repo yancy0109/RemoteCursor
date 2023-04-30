@@ -45,7 +45,6 @@ public abstract class RemoteCursorServerImpl implements RemoteCursorServer, Clie
 
     @Override
     public void addClient(ClientObject clientObject) {
-        logger.info("Add new Client. {}", clientObject);
         this.clientList.add(clientObject);
     }
 

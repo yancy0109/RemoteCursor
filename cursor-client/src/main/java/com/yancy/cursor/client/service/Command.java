@@ -11,10 +11,16 @@ public class Command {
 
     private byte arg2;
 
-    public Command(byte commandType, byte arg1, byte arg2) {
+    private byte arg3;
+
+    private byte arg4;
+
+    public Command(byte commandType, byte arg1, byte arg2, byte arg3, byte arg4) {
         this.commandType = commandType;
         this.arg1 = arg1;
         this.arg2 = arg2;
+        this.arg3 = arg3;
+        this.arg4 = arg4;
     }
 
     public byte getCommandType() {
@@ -39,5 +45,21 @@ public class Command {
 
     public void setArg2(byte arg2) {
         this.arg2 = arg2;
+    }
+
+    public byte getArg3() {
+        return arg3;
+    }
+
+    public void setArg3(byte arg3) {
+        this.arg3 = arg3;
+    }
+
+    public byte getArg4() {
+        return arg4;
+    }
+
+    public void setArg4(byte arg4) {
+        this.arg4 = arg4;
     }
 }
