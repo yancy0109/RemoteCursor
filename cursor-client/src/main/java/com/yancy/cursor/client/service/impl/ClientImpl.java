@@ -1,11 +1,11 @@
-package com.yancy.cursor.client;
+package com.yancy.cursor.client.service.impl;
 
+import com.yancy.cursor.client.service.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
