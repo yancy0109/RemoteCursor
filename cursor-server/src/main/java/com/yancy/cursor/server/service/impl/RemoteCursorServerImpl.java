@@ -5,6 +5,8 @@ import com.yancy.cursor.server.service.ClientService;
 import com.yancy.cursor.server.service.RemoteCursorServer;
 import com.yancy.cursor.server.service.Server;
 import com.yancy.cursor.server.service.thread.AcceptThread;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,11 +15,13 @@ import java.util.List;
 /**
  * @author yancy0109
  */
-public class RemoteCursorServerImpl implements RemoteCursorServer, ClientService {
+public abstract class RemoteCursorServerImpl implements RemoteCursorServer, ClientService {
+
+    private static final Logger logger = LoggerFactory.getLogger(RemoteCursorServer.class);
 
     private Server server;
 
-    private List<ClientObject> clientList = new ArrayList<>();
+    protected List<ClientObject> clientList = new ArrayList<>();
 
     public RemoteCursorServerImpl(String addr, int port) {
         this.server = new DefaultServer();
@@ -41,6 +45,7 @@ public class RemoteCursorServerImpl implements RemoteCursorServer, ClientService
 
     @Override
     public void addClient(ClientObject clientObject) {
+        logger.info("Add new Client. {}", clientObject);
         this.clientList.add(clientObject);
     }
 
@@ -48,7 +53,7 @@ public class RemoteCursorServerImpl implements RemoteCursorServer, ClientService
     public void closeClient() {
         for (ClientObject client : clientList) {
             try {
-                client.getSocket().close();
+                client.getSocketChannel().close();
             } catch (IOException e) {
                 throw new RuntimeException("Cloud not close Socket Connect", e);
             }

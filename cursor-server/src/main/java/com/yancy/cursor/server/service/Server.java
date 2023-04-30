@@ -2,6 +2,7 @@ package com.yancy.cursor.server.service;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.channels.SocketChannel;
 
 /**
  * 服务器类接口
@@ -19,6 +20,6 @@ public interface Server {
     /**
      * 接收链接，获取 Socket 对象
      */
-    Socket connection();
+    SocketChannel connection();
 
 }

@@ -1,6 +1,6 @@
 package com.yancy.cursor.server.client;
 
-import java.net.Socket;
+import java.io.IOException;
 import java.nio.channels.SocketChannel;
 
 /**
@@ -9,14 +9,15 @@ import java.nio.channels.SocketChannel;
 public class ClientObject {
 
     private String addr;
-
-    private Socket socket;
     private SocketChannel socketChannel;
 
-    public ClientObject(Socket socket) {
-        this.addr = socket.getInetAddress().toString();
-        this.socket = socket;
-        this.socketChannel = socket.getChannel();
+    public ClientObject(SocketChannel channel) {
+        try {
+            this.addr = channel.getRemoteAddress().toString();
+            this.socketChannel = channel;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getAddr() {
@@ -35,11 +36,11 @@ public class ClientObject {
         this.socketChannel = socketChannel;
     }
 
-    public Socket getSocket() {
-        return socket;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
+    @Override
+    public String toString() {
+        return "ClientObject{" +
+                "addr='" + addr + '\'' +
+                ", socketChannel=" + socketChannel +
+                '}';
     }
 }

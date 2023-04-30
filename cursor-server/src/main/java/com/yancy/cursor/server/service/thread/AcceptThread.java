@@ -6,7 +6,9 @@ import com.yancy.cursor.server.service.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.nio.channels.SocketChannel;
 
 /**
  * @author yancy0109
@@ -37,11 +39,11 @@ public class AcceptThread implements Runnable{
                  * 定期接收连接
                  */
                 Thread.sleep(DELAY);
-                Socket connection = this.server.connection();
-                logger.info("Get connection from : {}", connection.getInetAddress().toString());
-                clientService.addClient(new ClientObject(connection));
+                SocketChannel channel = this.server.connection();
+                logger.info("Get connection from : {}", channel.getRemoteAddress().toString());
+                clientService.addClient(new ClientObject(channel));
             }
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
     }

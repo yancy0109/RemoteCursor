@@ -1,5 +1,7 @@
 package com.yancy.cursor.client;
 
+import java.nio.channels.SocketChannel;
+
 /**
  * @author yancy0109
  */
