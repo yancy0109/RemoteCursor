@@ -35,8 +35,14 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
     public void workAccordingToCommand(Command command) {
         byte commandType = command.getCommandType();
         switch (commandType) {
-            case 1 : logger.info("Mouse Moved position : {}, {}", command.getArg1(), command.getArg2()); break;
-            case 2 : robot.mouseWheel(command.getArg1() * command.getArg2()); break;
+            case 1 :
+                    logger.info("Mouse Moved position , {},{}", command.getArg1(), command.getArg2());
+                    robot.mouseMove(command.getArg1(), command.getArg2());
+                    break;
+            case 2 :
+                    logger.info("Mouse Moved WheelMoved , {},{}", command.getArg1(), command.getArg2());
+                    robot.mouseWheel(command.getArg1() * command.getArg2());
+                    break;
         }
     }
 
