@@ -1,13 +1,6 @@
 package com.yancy.cursor.server;
 
-import com.yancy.cursor.server.service.RemoteCursorServer;
 import com.yancy.cursor.server.service.impl.BroadcastServiceImpl;
-import com.yancy.cursor.server.service.impl.RemoteCursorServerImpl;
-
-/**
- *
- * @author yancy0109
- */
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
@@ -19,13 +12,17 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
-public class App implements NativeMouseInputListener, NativeMouseWheelListener {
+/**
+ *
+ * @author yancy0109
+ */
+public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWheelListener{
 
     private static final Logger logger = LoggerFactory.getLogger(NativeMouseInputListener.class);
 
     private BroadcastServiceImpl broadcastService;
 
-    public App(String addr, int port) {
+    public RemoteCursorApp(String addr, int port) {
         this.broadcastService = new BroadcastServiceImpl(addr, port);
         broadcastService.serviceInit();
     }
@@ -42,7 +39,7 @@ public class App implements NativeMouseInputListener, NativeMouseWheelListener {
     public void nativeMouseMoved(NativeMouseEvent e) {
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
-        logger.info("Mouse Moved , {},{}", x, y);
+        //logger.info("Mouse Moved , {},{}", x, y);
         this.broadcastService.sendMouseMoved(x, y);
     }
 
@@ -53,7 +50,7 @@ public class App implements NativeMouseInputListener, NativeMouseWheelListener {
     public void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {
         int wheelDirection = nativeEvent.getWheelDirection();
         int wheelRotation = nativeEvent.getWheelRotation();
-        logger.info("Mouse WheelMoved , {},{}", wheelDirection, wheelRotation);
+        //logger.info("Mouse WheelMoved , {},{}", wheelDirection, wheelRotation);
         this.broadcastService.sendMousewheelMoved(wheelDirection, wheelRotation);
     }
 
@@ -66,13 +63,11 @@ public class App implements NativeMouseInputListener, NativeMouseWheelListener {
             System.err.println(ex.getMessage());
             System.exit(1);
         }
-
-        // Construct the example object.
-        App app = new App("192.168.3.54", 11451);
+        RemoteCursorApp remoteCursorApp = new RemoteCursorApp("192.168.3.54", 11451);
         // Add the appropriate listeners.
-        GlobalScreen.addNativeMouseListener(app);
-        GlobalScreen.addNativeMouseMotionListener(app);
-        GlobalScreen.addNativeMouseWheelListener(app);
+        GlobalScreen.addNativeMouseListener(remoteCursorApp);
+        GlobalScreen.addNativeMouseMotionListener(remoteCursorApp);
+        GlobalScreen.addNativeMouseWheelListener(remoteCursorApp);
     }
 
 }

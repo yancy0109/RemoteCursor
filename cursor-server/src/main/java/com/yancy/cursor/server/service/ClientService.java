@@ -9,6 +9,4 @@ public interface ClientService {
 
     void addClient(ClientObject clientObject);
 
-    void closeClient();
-
 }
