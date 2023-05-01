@@ -39,6 +39,7 @@ public class BroadcastServiceImpl extends RemoteCursorServerImpl implements Broa
         try {
             clientObject.getSocketChannel().write(src);
         } catch (IOException e) {
+            selectService.errorRemove();
             logger.warn("There has a error when send Mouse Moved Msg. Caused by IOException");
             throw new RuntimeException(e);
         }
@@ -54,6 +55,7 @@ public class BroadcastServiceImpl extends RemoteCursorServerImpl implements Broa
         try {
             cLientObject.getSocketChannel().write(src);
         } catch (IOException e) {
+            selectService.errorRemove();
             logger.warn("There has a error when send Mouse Wheel Moved Msg. Caused by IOException");
             throw new RuntimeException(e);
         }

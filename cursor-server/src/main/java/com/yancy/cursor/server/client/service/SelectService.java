@@ -18,4 +18,10 @@ public interface SelectService {
     void selectRight();
     void selectTop();
     void selectDown();
+
+    /**
+     * 移除当前指向 ClientObject 抛弃连接
+     * 切换指向指针为 当前主机 SelfWindowTargetImplClient 对象
+     */
+    void errorRemove();
 }

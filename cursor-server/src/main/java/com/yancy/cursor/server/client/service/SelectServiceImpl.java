@@ -104,4 +104,14 @@ public class SelectServiceImpl implements SelectService, ClientService {
         }
         return false;
     }
+
+    @Override
+    public void errorRemove() {
+        if (this.point.getLeft() != null) {
+            this.point = this.point.getLeft();
+        }
+        if (!(point instanceof SelfWindowTarget)) {
+          throw new RuntimeException("Get Default Selector Point has error");
+        }
+    }
 }

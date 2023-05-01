@@ -45,11 +45,11 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
         int y = ((command.getArg3() & FF16) << 8) | (command.getArg4() & FF16);
         switch (commandType) {
             case 1 :
-                    logger.info("Mouse Moved position , {},{}", x, y);
+//                    logger.info("Mouse Moved position , {},{}", x, y);
                     robot.mouseMove(x, y);
                     break;
             case 2 :
-                    logger.info("Mouse Moved WheelMoved , {},{}",  x, y != 1 ? -1 : 1);
+//                    logger.info("Mouse Moved WheelMoved , {},{}",  x, y != 1 ? -1 : 1);
                     robot.mouseWheel(x * y);
                     break;
         }
