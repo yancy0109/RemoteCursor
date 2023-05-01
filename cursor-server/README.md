@@ -1,6 +1,30 @@
 ### Cursor 服务端
 
-预期实现功能：
-- 设备注册发现
-- 屏幕设备位置功能(是否需要Web端?)
-- 将服务器所在鼠标操作模拟输入至另一端设备
+
+
+项目结构信息
+
+com.yancy.cursor.server
+
+- client
+  - service
+    - BarrierService
+    - DefaultBarrierService
+    - SelectSevice
+    - SelectServiceImpl
+  - Client
+  - ClientObject
+  - SelfWindowTarget
+  - SelftWindowTagetImplClient
+  - WindowClient
+
+- service
+  - impl
+    - BroadcastServiceImpl
+    - DefaultServer
+    - RemoteCursorServerImpl
+- BroadcastService
+- ClientService
+- RemoteCursorService
+- Server
+- RemoteCursorApp
