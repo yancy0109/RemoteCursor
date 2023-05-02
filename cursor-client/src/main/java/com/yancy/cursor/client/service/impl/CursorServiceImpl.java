@@ -61,9 +61,9 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
                 // 将鼠标移动到需要单击的位置
                 robot.mouseMove(x, y);
                 // 按下并释放鼠标左键（模拟单击）
-                for (int i = 0; i < command.getArg5(); i++) {
-                    robot.mousePress(command.getArg6());
-                    robot.mouseRelease(command.getArg6());
+                for (int i = 0; i < command.getArg6(); i++) {
+                    robot.mousePress(InputEvent.getMaskForButton(command.getArg5()));
+                    robot.mouseRelease(InputEvent.getMaskForButton(command.getArg5()));
                 }
                 break;
         }
