@@ -42,7 +42,11 @@ public class CursorApp extends CursorServiceImpl implements NativeMouseInputList
     }
 
     public static void main(String[] args) {
-        new CursorApp().run("192.168.3.54", 11451);
+        String addr = "192.168.3.54";
+        if (args.length == 2 && args[1] != null) {
+            addr = args[1];
+        }
+        new CursorApp().run(addr, 11451);
         try {
             // 初始化 GlobalScreen
             GlobalScreen.registerNativeHook();

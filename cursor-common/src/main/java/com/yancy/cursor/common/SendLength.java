@@ -5,7 +5,7 @@ package com.yancy.cursor.common;
  */
 public class SendLength {
 
-    private static final byte HEAD_LENGTH = 1;
+    public static final byte HEAD_LENGTH = 7;
 
 
 }

@@ -60,4 +60,20 @@ public class BroadcastServiceImpl extends RemoteCursorServerImpl implements Broa
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void sendMouseClicked(int x, int y, int buttonType, int clickTime) {
+        ClientObject cLientObject = selectService.getCLientObject();
+        if (cLientObject == null) {
+            return;
+        }
+        ByteBuffer src = ByteBuffer.wrap(SendUtils.castMouseClicked(x, y, buttonType, clickTime));
+        try {
+            cLientObject.getSocketChannel().write(src);
+        } catch (IOException e) {
+            selectService.errorRemove();
+            logger.warn("There has a error when send Mouse Wheel Moved Msg. Caused by IOException");
+            throw new RuntimeException(e);
+        }
+    }
 }

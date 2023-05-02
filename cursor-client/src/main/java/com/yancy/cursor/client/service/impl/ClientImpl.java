@@ -1,6 +1,7 @@
 package com.yancy.cursor.client.service.impl;
 
 import com.yancy.cursor.client.service.Client;
+import com.yancy.cursor.common.SendLength;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ public abstract class ClientImpl implements Client {
 //            }
             throw new RuntimeException("The Socket Channel has not init.");
         }
-        ByteBuffer buffer = ByteBuffer.allocate(5);
+        ByteBuffer buffer = ByteBuffer.allocate(SendLength.HEAD_LENGTH);
         int bytesRead = 0;
         while (bytesRead < buffer.capacity()) {
             int result;

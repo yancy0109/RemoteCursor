@@ -14,7 +14,9 @@ public class SendUtils {
             (byte) (x >> 8),
             (byte) (x),
             (byte) (y >> 8),
-            (byte) (y)
+            (byte) (y),
+            0,
+            0,
         };
         return res;
     }
@@ -24,7 +26,22 @@ public class SendUtils {
             0,
             (byte) (x),
             0,
-            (byte) (y)
+            (byte) (y),
+            0,
+            0,
+        };
+        return res;
+    }
+
+    public static byte[] castMouseClicked(int x, int y, int buttonType, int clickTime) {
+        byte[] res = new byte[] {
+                SendType.TYPE_MOUSE_CLICK,
+                (byte) (x >> 8),
+                (byte) (x),
+                (byte) (y >> 8),
+                (byte) (y),
+                (byte) buttonType,
+                (byte) clickTime,
         };
         return res;
     }

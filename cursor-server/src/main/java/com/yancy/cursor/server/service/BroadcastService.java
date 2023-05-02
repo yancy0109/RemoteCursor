@@ -12,4 +12,6 @@ public interface BroadcastService {
     void sendMouseMoved(int x, int y);
 
     void sendMousewheelMoved(int wheelDirection, int wheelRotation);
+
+    void sendMouseClicked(int x, int y, int buttonType, int clickTime);
 }

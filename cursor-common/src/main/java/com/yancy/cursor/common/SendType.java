@@ -16,4 +16,6 @@ public class SendType {
      */
     public static final byte TYPE_MOUSE_WHEEl = 2;
 
+    public static final byte TYPE_MOUSE_CLICK = 3;
+
 }

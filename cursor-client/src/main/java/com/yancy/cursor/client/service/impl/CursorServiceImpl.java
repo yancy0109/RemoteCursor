@@ -2,10 +2,12 @@ package com.yancy.cursor.client.service.impl;
 
 import com.yancy.cursor.client.service.Command;
 import com.yancy.cursor.client.service.CursorService;
+import com.yancy.cursor.common.SendLength;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 
 /**
  * @author yancy0109
@@ -26,7 +28,7 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
 
     @Override
     public Command getCommand(byte[] bytes) {
-        if (bytes.length != 5) {
+        if (bytes.length != SendLength.HEAD_LENGTH) {
             throw new RuntimeException("Received Info from Server has error.");
         }
         return new Command(
@@ -34,7 +36,9 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
                 bytes[1],
                 bytes[2],
                 bytes[3],
-                bytes[4]
+                bytes[4],
+                bytes[5],
+                bytes[6]
         );
     }
 
@@ -52,6 +56,16 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
 //                    logger.info("Mouse Moved WheelMoved , {},{}",  x, y != 1 ? -1 : 1);
                     robot.mouseWheel(x * y);
                     break;
+            case 3:
+//                    logger.info("Mouse Moved Clicked , {},{}",  x, y != 1 ? -1 : 1);
+                // 将鼠标移动到需要单击的位置
+                robot.mouseMove(x, y);
+                // 按下并释放鼠标左键（模拟单击）
+                for (int i = 0; i < command.getArg5(); i++) {
+                    robot.mousePress(command.getArg6());
+                    robot.mouseRelease(command.getArg6());
+                }
+                break;
         }
     }
 

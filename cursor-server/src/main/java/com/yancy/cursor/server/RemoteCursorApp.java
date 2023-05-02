@@ -28,6 +28,12 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
     }
 
     public void nativeMouseClicked(NativeMouseEvent e) {
+        int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
+        int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
+        int button = e.getButton(); // 获取鼠标按钮（左、中、右）
+        int clickCount = e.getClickCount(); // 点击次数
+//        logger.info("Mouse Clicked , {},{},{},{},{}", x, y, button, isDoubleClick, clickCount);
+        this.broadcastService.sendMouseClicked(x, y, button, clickCount);
     }
 
     public void nativeMousePressed(NativeMouseEvent e) {
