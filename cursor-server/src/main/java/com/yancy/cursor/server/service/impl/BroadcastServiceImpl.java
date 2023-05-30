@@ -2,8 +2,6 @@ package com.yancy.cursor.server.service.impl;
 
 import com.yancy.cursor.common.utils.SendUtils;
 import com.yancy.cursor.server.client.ClientObject;
-import com.yancy.cursor.server.client.service.BarrierService;
-import com.yancy.cursor.server.client.service.DefaultBarrierService;
 import com.yancy.cursor.server.service.BroadcastService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

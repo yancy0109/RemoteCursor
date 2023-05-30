@@ -2,36 +2,25 @@ package com.yancy.cursor.client;
 
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
-import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
-import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
 import com.yancy.cursor.client.service.Command;
 import com.yancy.cursor.client.service.impl.CursorServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Scanner;
 
 /**
  * @author yancy0109
  */
-public class CursorApp extends CursorServiceImpl implements NativeMouseInputListener {
+public class CursorApp extends CursorServiceImpl {
 
-    @Override
-    public void nativeMouseClicked(NativeMouseEvent nativeEvent) {
-    }
+    private static final Logger logger = LoggerFactory.getLogger(CursorApp.class);
 
-    @Override
-    public void nativeMousePressed(NativeMouseEvent nativeEvent) {
-    }
-
-    @Override
-    public void nativeMouseReleased(NativeMouseEvent nativeEvent) {
-    }
-
-    @Override
-    public void nativeMouseMoved(NativeMouseEvent nativeEvent) {
-    }
-
-    @Override
-    public void nativeMouseDragged(NativeMouseEvent nativeEvent) {
-    }
-
+    /**
+     * 循环读入 Byte，解析为 Command，进行解析调用鼠标
+     * @param addr
+     * @param port
+     */
     void run(String addr, int port) {
         this.connServer(addr, port);
         while (true) {
@@ -42,11 +31,12 @@ public class CursorApp extends CursorServiceImpl implements NativeMouseInputList
     }
 
     public static void main(String[] args) {
-        String addr = "192.168.3.54";
-        if (args.length == 2 && args[1] != null) {
-            addr = args[1];
-        }
-        new CursorApp().run(addr, 11451);
+        Scanner scanner = new Scanner(System.in);
+        logger.info("Please Input address of Cursor Server");
+        final String addr = scanner.nextLine();
+        logger.info("Please Input port of Cursor Server");
+        final int port = scanner.nextInt();
+        new CursorApp().run(addr, port);
         try {
             // 初始化 GlobalScreen
             GlobalScreen.registerNativeHook();
@@ -54,8 +44,5 @@ public class CursorApp extends CursorServiceImpl implements NativeMouseInputList
             System.err.println("无法初始化 JNativeHook");
             System.exit(1);
         }
-
-        // 添加 NativeMouseInputListener
-        GlobalScreen.addNativeMouseListener(new CursorApp());
     }
 }

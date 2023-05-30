@@ -35,6 +35,9 @@ public abstract class RemoteCursorServerImpl implements RemoteCursorServer, Clie
 
     @Override
     public void acceptConn() {
+        /**
+         * New Thread for Connection
+         */
         Thread thread = new Thread(new AcceptThread(this.server, this));
         thread.start();
     }

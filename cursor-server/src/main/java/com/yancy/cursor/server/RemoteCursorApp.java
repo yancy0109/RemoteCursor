@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.Scanner;
 
 /**
  *
@@ -24,6 +25,7 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
 
     public RemoteCursorApp(String addr, int port) {
         this.broadcastService = new BroadcastServiceImpl(addr, port);
+        // init Service
         broadcastService.serviceInit();
     }
 
@@ -32,7 +34,6 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
         int button = e.getButton(); // 获取鼠标按钮（左、中、右）
         int clickCount = e.getClickCount(); // 点击次数
-//        logger.info("Mouse Clicked , {},{},{},{},{}", x, y, button, isDoubleClick, clickCount);
         this.broadcastService.sendMouseClicked(x, y, button, clickCount);
     }
 
@@ -45,7 +46,6 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
     public void nativeMouseMoved(NativeMouseEvent e) {
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
-        //logger.info("Mouse Moved , {},{}", x, y);
         this.broadcastService.sendMouseMoved(x, y);
     }
 
@@ -56,7 +56,6 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
     public void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {
         int wheelDirection = nativeEvent.getWheelDirection();
         int wheelRotation = nativeEvent.getWheelRotation();
-        //logger.info("Mouse WheelMoved , {},{}", wheelDirection, wheelRotation);
         this.broadcastService.sendMousewheelMoved(wheelDirection, wheelRotation);
     }
 
@@ -69,7 +68,13 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
             System.err.println(ex.getMessage());
             System.exit(1);
         }
-        RemoteCursorApp remoteCursorApp = new RemoteCursorApp("192.168.3.54", 11451);
+        Scanner scanner = new Scanner(System.in);
+        logger.info("Please Input System Address");
+        final String addr = scanner.next();
+        logger.info("Please Input System Port");
+        final int port = scanner.nextInt();
+        // new App
+        RemoteCursorApp remoteCursorApp = new RemoteCursorApp(addr, port);
         // Add the appropriate listeners.
         GlobalScreen.addNativeMouseListener(remoteCursorApp);
         GlobalScreen.addNativeMouseMotionListener(remoteCursorApp);

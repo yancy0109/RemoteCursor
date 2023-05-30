@@ -22,15 +22,6 @@ public abstract class ClientImpl implements Client {
     @Override
     public byte[] read() {
         if (this.socketChannel == null) {
-//            final int MAX_WAIT = 10;
-//            int time = 0;
-//            while (time++ < MAX_WAIT) {
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            }
             throw new RuntimeException("The Socket Channel has not init.");
         }
         ByteBuffer buffer = ByteBuffer.allocate(SendLength.HEAD_LENGTH);

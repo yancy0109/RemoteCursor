@@ -26,6 +26,18 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
         }
     }
 
+
+    /**
+     *
+     * @param bytes 获取服务器传输 Bytes
+     */
+    public void resolveBytes(byte[] bytes) {
+        // 解析为 Command
+        Command command = getCommand(bytes);
+        // 调用 Robot
+        workAccordingToCommand(command);
+    }
+
     @Override
     public Command getCommand(byte[] bytes) {
         if (bytes.length != SendLength.HEAD_LENGTH) {
@@ -49,15 +61,12 @@ public class CursorServiceImpl extends ClientImpl implements CursorService {
         int y = ((command.getArg3() & FF16) << 8) | (command.getArg4() & FF16);
         switch (commandType) {
             case 1 :
-//                    logger.info("Mouse Moved position , {},{}", x, y);
                     robot.mouseMove(x, y);
                     break;
             case 2 :
-//                    logger.info("Mouse Moved WheelMoved , {},{}",  x, y != 1 ? -1 : 1);
                     robot.mouseWheel(x * y);
                     break;
             case 3:
-//                    logger.info("Mouse Moved Clicked , {},{}",  x, y != 1 ? -1 : 1);
                 // 将鼠标移动到需要单击的位置
                 robot.mouseMove(x, y);
                 // 按下并释放鼠标左键（模拟单击）
