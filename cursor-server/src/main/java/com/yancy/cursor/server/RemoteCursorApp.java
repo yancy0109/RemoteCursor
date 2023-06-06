@@ -1,5 +1,6 @@
 package com.yancy.cursor.server;
 
+import com.yancy.cursor.server.service.BroadcastService;
 import com.yancy.cursor.server.service.impl.BroadcastServiceImpl;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
@@ -21,7 +22,7 @@ public class RemoteCursorApp implements NativeMouseInputListener, NativeMouseWhe
 
     private static final Logger logger = LoggerFactory.getLogger(NativeMouseInputListener.class);
 
-    private BroadcastServiceImpl broadcastService;
+    private BroadcastService broadcastService;
 
     public RemoteCursorApp(String addr, int port) {
         this.broadcastService = new BroadcastServiceImpl(addr, port);

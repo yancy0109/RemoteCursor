@@ -6,25 +6,4 @@
 
 com.yancy.cursor.server
 
-- client
-  - service
-    - BarrierService
-    - DefaultBarrierService
-    - SelectSevice
-    - SelectServiceImpl
-  - Client
-  - ClientObject
-  - SelfWindowTarget
-  - SelftWindowTagetImplClient
-  - WindowClient
-
-- service
-  - impl
-    - BroadcastServiceImpl
-    - DefaultServer
-    - RemoteCursorServerImpl
-- BroadcastService
-- ClientService
-- RemoteCursorService
-- Server
-- RemoteCursorApp
+> 吐槽一句，好好地规划出每个类及接口作用确实是个技术活

@@ -5,7 +5,7 @@ import com.yancy.cursor.server.client.ClientObject;
 /**
  * @author yancy0109
  */
-public interface ClientService {
+public interface ClientAddService {
 
     void addClient(ClientObject clientObject);
 

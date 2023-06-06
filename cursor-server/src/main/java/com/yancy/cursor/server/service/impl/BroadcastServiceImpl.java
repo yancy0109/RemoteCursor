@@ -13,7 +13,7 @@ import java.nio.ByteBuffer;
  * 发送器实现类
  * @author yancy0109
  */
-public class BroadcastServiceImpl extends RemoteCursorServerImpl implements BroadcastService {
+public class BroadcastServiceImpl extends CursorServerImpl implements BroadcastService {
 
     private static final Logger logger = LoggerFactory.getLogger(BroadcastService.class);
 
@@ -34,44 +34,26 @@ public class BroadcastServiceImpl extends RemoteCursorServerImpl implements Broa
             return;
         }
         ByteBuffer src = ByteBuffer.wrap(SendUtils.castMovedBytes(x, y));
-        try {
-            clientObject.getSocketChannel().write(src);
-        } catch (IOException e) {
-            selectService.errorRemove();
-            logger.warn("There has a error when send Mouse Moved Msg. Caused by IOException");
-            throw new RuntimeException(e);
-        }
+        clientObject.writeAction(src);
     }
 
     @Override
     public void sendMousewheelMoved(int wheelDirection, int wheelRotation) {
-        ClientObject cLientObject = selectService.getCLientObject();
-        if (cLientObject == null) {
+        ClientObject clientObject = selectService.getCLientObject();
+        if (clientObject == null) {
             return;
         }
         ByteBuffer src = ByteBuffer.wrap(SendUtils.castWheelMovedBytes(wheelDirection, wheelRotation));
-        try {
-            cLientObject.getSocketChannel().write(src);
-        } catch (IOException e) {
-            selectService.errorRemove();
-            logger.warn("There has a error when send Mouse Wheel Moved Msg. Caused by IOException");
-            throw new RuntimeException(e);
-        }
+        clientObject.writeAction(src);
     }
 
     @Override
     public void sendMouseClicked(int x, int y, int buttonType, int clickTime) {
-        ClientObject cLientObject = selectService.getCLientObject();
-        if (cLientObject == null) {
+        ClientObject clientObject = selectService.getCLientObject();
+        if (clientObject == null) {
             return;
         }
         ByteBuffer src = ByteBuffer.wrap(SendUtils.castMouseClicked(x, y, buttonType, clickTime));
-        try {
-            cLientObject.getSocketChannel().write(src);
-        } catch (IOException e) {
-            selectService.errorRemove();
-            logger.warn("There has a error when send Mouse Wheel Moved Msg. Caused by IOException");
-            throw new RuntimeException(e);
-        }
+        clientObject.writeAction(src);
     }
 }

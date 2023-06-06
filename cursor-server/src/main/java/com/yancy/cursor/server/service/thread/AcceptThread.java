@@ -1,13 +1,12 @@
 package com.yancy.cursor.server.service.thread;
 
 import com.yancy.cursor.server.client.ClientObject;
-import com.yancy.cursor.server.service.ClientService;
+import com.yancy.cursor.server.service.ClientAddService;
 import com.yancy.cursor.server.service.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.nio.channels.SocketChannel;
 
 /**
@@ -19,14 +18,14 @@ public class AcceptThread implements Runnable{
 
     private final Server server;
 
-    private final ClientService clientService;
+    private final ClientAddService clientService;
 
     /**
      * 阻塞获取链接时间
      */
     private static final int DELAY = 1000;
 
-    public AcceptThread(Server server, ClientService clientService) {
+    public AcceptThread(Server server, ClientAddService clientService) {
         this.server = server;
         this.clientService = clientService;
     }

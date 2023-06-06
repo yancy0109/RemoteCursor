@@ -1,7 +1,7 @@
 package com.yancy.cursor.server.service;
 
 /**
- * 广播功能接口
+ * 广播功能接口, 传递坐标动作信息
  * 交由 Cursor Listener 触发
  * @author yancy0109
  */

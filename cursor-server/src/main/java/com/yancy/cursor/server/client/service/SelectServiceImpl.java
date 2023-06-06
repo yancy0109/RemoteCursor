@@ -4,16 +4,14 @@ import com.yancy.cursor.server.client.ClientObject;
 import com.yancy.cursor.server.client.SelfWindowTarget;
 import com.yancy.cursor.server.client.SelfWindowTargetImplClient;
 import com.yancy.cursor.server.client.WindowClient;
-import com.yancy.cursor.server.service.ClientService;
+import com.yancy.cursor.server.service.ClientAddService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.nio.channels.SocketChannel;
 
 /**
  * @author yancy0109
  */
-public class SelectServiceImpl implements SelectService, ClientService {
+public class SelectServiceImpl implements SelectService, ClientAddService {
 
     private WindowClient point = new SelfWindowTargetImplClient(null);
 
