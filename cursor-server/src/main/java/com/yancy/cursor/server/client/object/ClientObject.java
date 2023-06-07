@@ -1,4 +1,4 @@
-package com.yancy.cursor.server.client;
+package com.yancy.cursor.server.client.object;
 
 import com.yancy.cursor.server.client.service.ClientService;
 

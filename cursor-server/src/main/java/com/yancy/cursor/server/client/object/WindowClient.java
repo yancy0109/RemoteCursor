@@ -1,6 +1,4 @@
-package com.yancy.cursor.server.client;
-
-import java.nio.channels.SocketChannel;
+package com.yancy.cursor.server.client.object;
 
 /**
  * 为客户端加上方向属性

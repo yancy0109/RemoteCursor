@@ -1,6 +1,6 @@
-package com.yancy.cursor.server.service;
+package com.yancy.cursor.server.service.server;
 
-import com.yancy.cursor.server.client.ClientObject;
+import com.yancy.cursor.server.client.object.ClientObject;
 
 /**
  * @author yancy0109

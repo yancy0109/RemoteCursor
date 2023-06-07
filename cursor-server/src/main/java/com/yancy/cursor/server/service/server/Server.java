@@ -1,4 +1,4 @@
-package com.yancy.cursor.server.service;
+package com.yancy.cursor.server.service.server;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;

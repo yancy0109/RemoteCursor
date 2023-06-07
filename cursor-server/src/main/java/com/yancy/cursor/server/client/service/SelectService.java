@@ -1,6 +1,6 @@
 package com.yancy.cursor.server.client.service;
 
-import com.yancy.cursor.server.client.ClientObject;
+import com.yancy.cursor.server.client.object.ClientObject;
 
 /**
  * ClientObject 选择器

@@ -1,4 +1,4 @@
-package com.yancy.cursor.server.service;
+package com.yancy.cursor.server.service.server;
 
 /**
  * @author yancy0109

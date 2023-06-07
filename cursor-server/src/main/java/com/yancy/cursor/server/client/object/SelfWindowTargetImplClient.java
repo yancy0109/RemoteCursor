@@ -1,4 +1,4 @@
-package com.yancy.cursor.server.client;
+package com.yancy.cursor.server.client.object;
 
 /**
  * 当前服务器 WindowClient类

@@ -1,8 +1,8 @@
 package com.yancy.cursor.server.service.thread;
 
-import com.yancy.cursor.server.client.ClientObject;
-import com.yancy.cursor.server.service.ClientAddService;
-import com.yancy.cursor.server.service.Server;
+import com.yancy.cursor.server.client.object.ClientObject;
+import com.yancy.cursor.server.service.server.ClientAddService;
+import com.yancy.cursor.server.service.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

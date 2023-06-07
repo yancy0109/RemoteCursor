@@ -1,12 +1,12 @@
 package com.yancy.cursor.server.service.impl;
 
 import com.yancy.cursor.common.utils.SendUtils;
-import com.yancy.cursor.server.client.ClientObject;
+import com.yancy.cursor.server.client.object.ClientObject;
 import com.yancy.cursor.server.service.BroadcastService;
+import com.yancy.cursor.server.service.server.impl.CursorServerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**

@@ -1,20 +1,28 @@
-package com.yancy.cursor.server.client.service;
+package com.yancy.cursor.server.client.service.impl;
 
-import com.yancy.cursor.server.client.ClientObject;
-import com.yancy.cursor.server.client.SelfWindowTarget;
-import com.yancy.cursor.server.client.SelfWindowTargetImplClient;
-import com.yancy.cursor.server.client.WindowClient;
-import com.yancy.cursor.server.service.ClientAddService;
+import com.yancy.cursor.server.client.object.ClientObject;
+import com.yancy.cursor.server.client.object.SelfWindowTarget;
+import com.yancy.cursor.server.client.object.SelfWindowTargetImplClient;
+import com.yancy.cursor.server.client.object.WindowClient;
+import com.yancy.cursor.server.client.service.BarrierService;
+import com.yancy.cursor.server.client.service.SelectService;
+import com.yancy.cursor.server.service.server.ClientAddService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 选择器服务实现类
+ * 实现可以获取当前控制类实体对象
+ * 提供接口添加新的客户端对象
  * @author yancy0109
  */
 public class SelectServiceImpl implements SelectService, ClientAddService {
 
     private WindowClient point = new SelfWindowTargetImplClient(null);
 
+    /**
+     * 提供屏幕遮障服务
+     */
     private BarrierService barrierService = new DefaultBarrierService();
 
     private static Logger logger = LoggerFactory.getLogger(SelectService.class);

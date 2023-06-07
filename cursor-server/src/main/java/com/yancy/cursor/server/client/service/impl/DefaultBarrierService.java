@@ -1,4 +1,6 @@
-package com.yancy.cursor.server.client.service;
+package com.yancy.cursor.server.client.service.impl;
+
+import com.yancy.cursor.server.client.service.BarrierService;
 
 import javax.swing.*;
 import java.awt.*;
